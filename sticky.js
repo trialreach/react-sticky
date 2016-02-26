@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 
 var Sticky = React.createClass({
 
@@ -26,14 +27,14 @@ var Sticky = React.createClass({
   },
 
   top: function() {
-    return this.getDOMNode().getBoundingClientRect().top;
+    return ReactDOM.findDOMNode(this).getBoundingClientRect().top;
   },
 
   shouldBeSticky: function() {
-    var position = this.getDOMNode().style.position;
-    this.getDOMNode().style.position = 'relative';
+    var position = ReactDOM.findDOMNode(this).style.position;
+    ReactDOM.findDOMNode(this).style.position = 'relative';
     var shouldBeSticky = this.top() <= -this.props.topOffset;
-    this.getDOMNode().style.position = position;
+    ReactDOM.findDOMNode(this).style.position = position;
     return shouldBeSticky;
   },
 
